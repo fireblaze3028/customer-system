@@ -17,6 +17,7 @@ class CustomerSystem{
 
         // More variables for the main may be declared in the space below
 
+        String allUserData;
 
         do{
             printMenu();                                    // Printing out the main menu
@@ -25,7 +26,7 @@ class CustomerSystem{
             if (userInput.equals(enterCustomerOption)){
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
-                enterCustomerInfo();
+                allUserData = enterCustomerInfo();
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
@@ -55,7 +56,8 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void enterCustomerInfo() {
+    public static String enterCustomerInfo() {
+        return "";
     }
     /*
     * This method may be edited to achieve the task however you like.
