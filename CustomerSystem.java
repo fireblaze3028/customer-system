@@ -25,7 +25,7 @@ class CustomerSystem{
 
             if (userInput.equals(enterCustomerOption)){
                 // Only the line below may be editted based on the parameter list and how you design the method return
-          // Any necessary variables may be added to this if section, but nowhere else in the code
+                // Any necessary variables may be added to this if section, but nowhere else in the code
                 allUserData = enterCustomerInfo();
 
             }
@@ -58,21 +58,59 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static String enterCustomerInfo() {
-        return "";
+        // Initialise scanner
+        Scanner customerReader = new Scanner(System.in);
+
+        // Ask the user for their first and last name, city, postal code, and credit card number
+        System.out.println("Please enter your first name:");
+        String firstName = customerReader.nextLine();
+
+        System.out.println("Please enter your last name:");
+        String lastName = customerReader.nextLine();
+
+        System.out.println("Please enter your city:");
+        String city = customerReader.nextLine();
+
+        System.out.println("Please enter the postal code:");
+        String postalCode = customerReader.nextLine();
+
+        // If the postal code is invalid
+        while (validatePostalCode(postalCode) == false) {
+            System.out.println("That postal code isn't valid. Please try again:");
+            postalCode = customerReader.nextLine();
+        }
+
+        System.out.println("Please enter your credit card number:");
+        String creditCardNumber = customerReader.nextLine();
+
+        // If the credit card is invalid
+        while (validateCreditCard(creditCardNumber) == false) {
+            System.out.println("That credit card number isn't valid. Please try again:");
+            creditCardNumber = customerReader.nextLine();
+        }
+
+        // Cannot close the scanner since it closes all other scanners
+
+        String allUserData = firstName.concat(", ").concat(lastName).concat(", ").concat(city).concat(", ").concat(postalCode).concat(", ").concat(creditCardNumber); 
+        return allUserData;
     }
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validatePostalCode(){ 
+    public static boolean validatePostalCode(String postalCode){ 
+        // This is temporary
+        return true;
     }
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(){
+    public static boolean validateCreditCard(String creditCard){
+        // This is temporary
+        return true;
     }
     /*
     * This method may be edited to achieve the task however you like.
