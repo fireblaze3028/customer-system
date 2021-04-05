@@ -5,8 +5,6 @@
 
 import java.util.Scanner;
 // More packages may be imported in the space below
-import java.io.File;
-import java.io.FileNotFoundException;
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -57,7 +55,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static String enterCustomerInfo() {
+    public static enterCustomerInfo() {
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -65,17 +63,6 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void validatePostalCode(){ 
-      if (len >= 3){
-        File textFile = new File("postal_codes.txt");
-        Scanner reader = new Scanner(textFile);
-        String stats = reader.nextLine();
-        System.out.println(stats);
-      }
-      else { 
-        System.out.println(word);
-      }
-      reader.close();
-    }
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type

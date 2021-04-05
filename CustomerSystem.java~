@@ -57,21 +57,19 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void enterCustomerInfo() {
+    public static enterCustomerInfo() {
     }
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validatePostalCode(){
-      File textFile = new File("postal_codes.txt");
-      Scanner reader = new Scanner(textFile);
-      String stats = reader.nextLine();
-      System.out.println(stats);
-      
+    public static void validatePostalCode(){ 
       if (len >= 3){
-        
+        File textFile = new File("postal_codes.txt");
+        Scanner reader = new Scanner(textFile);
+        String stats = reader.nextLine();
+        System.out.println(stats);
       }
       else { 
         System.out.println(word);
