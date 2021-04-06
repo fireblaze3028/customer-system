@@ -109,8 +109,61 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static boolean validateCreditCard(String creditCard){
-        // This is temporary
-        return true;
+        // Initialise variables
+        int sum1 = 0;
+        int sum2 = 0;
+        int addBy = 0;
+        String creditCardReversed = "";
+
+        // If the credit card has less than 9 digits
+        if (creditCard.length() < 9) {
+            return false;
+        }
+        
+        // Reverse the credit card
+        for (int i = 0; i < creditCard.length(); i++) {
+            creditCardReversed += creditCard.charAt((creditCard.length()-1)-i);
+        }
+
+        // Add the odd numbers for the credit card
+        for (int i = 0; i < creditCardReversed.length(); i += 2) {
+            // Try to add the odd numbers if they are numbers
+            try {
+                sum1 += Integer.parseInt(creditCardReversed.substring(i,i+1));
+            }
+            // Return false if the character isn't a number
+            catch (Exception e) {
+                return false;
+            }
+        }
+        // Double the even numbers and add them together
+        for (int i = 1; i < creditCardReversed.length(); i += 2) {
+            // Try to add the even numbers if they are numbers
+            try {
+                addBy += Integer.parseInt(creditCardReversed.substring(i, i+1));
+            }
+            // Return false if the character isn't a number
+            catch (Exception e) {
+                return false;
+            }
+            // Double the integer
+            addBy *= 2;
+            // If the integer is 10 or more, add the individual digits together
+            if (addBy > 9) {
+                addBy = (addBy % 10) + (addBy/10); 
+            }
+            // Increment sum2 by addBy
+            sum2 += addBy;
+            // Reset addBy so it calculates sum2 correctly
+            addBy = 0;
+        }
+        // If the last digit has a 0, return true
+        if ((sum1 + sum2) % 10 == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     /*
     * This method may be edited to achieve the task however you like.
