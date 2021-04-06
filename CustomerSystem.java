@@ -112,6 +112,7 @@ class CustomerSystem{
         // Initalise variables
         int sum1 = 0;
         int sum2 = 0;
+        int addBy = 0;
         String creditCardReversed = "";
 
         // If the credit card has less than 9 digits
@@ -119,9 +120,12 @@ class CustomerSystem{
             return false;
         }
         
+        // Reverse the credit card
         for (int i = 0; i < creditCard.length(); i++) {
             creditCardReversed += creditCard.charAt((creditCard.length()-1)-i);
         }
+
+        // Add the odd numbers for the credit card
         for (int i = 0; i < creditCardReversed.length(); i += 2) {
             // Try to add the odd numbers if they are numbers
             try {
@@ -133,7 +137,25 @@ class CustomerSystem{
             }
         }
 
-        return false;
+        for (int i = 1; i < creditCardReversed.length(); i += 2) {
+            addBy += Integer.parseInt(creditCardReversed.substring(i, i+1));
+
+            addBy *= 2;
+
+            if (addBy > 9) {
+                addBy = (addBy % 10) + (addBy/10); 
+            }
+            
+            sum2 += addBy;
+            addBy = 0;
+        }
+        
+        if ((sum1 + sum2) % 10 == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     /*
     * This method may be edited to achieve the task however you like.
