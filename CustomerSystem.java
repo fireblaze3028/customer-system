@@ -109,12 +109,31 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static boolean validateCreditCard(String creditCard){
+        // Initalise variables
+        int sum1 = 0;
+        int sum2 = 0;
+        String creditCardReversed = "";
+
+        // If the credit card has less than 9 digits
         if (creditCard.length() < 9) {
             return false;
         }
-        else {
-            return true;
+        
+        for (int i = 0; i < creditCard.length(); i++) {
+            creditCardReversed += creditCard.charAt((creditCard.length()-1)-i);
         }
+        for (int i = 0; i < creditCardReversed.length(); i += 2) {
+            // Try to add the odd numbers if they are numbers
+            try {
+                sum1 += Integer.parseInt(creditCardReversed.substring(i,i+1));
+            }
+            // Return false if the character isn't a number
+            catch (Exception e) {
+                return false;
+            }
+        }
+
+        return false;
     }
     /*
     * This method may be edited to achieve the task however you like.
