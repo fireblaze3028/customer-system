@@ -109,8 +109,12 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static boolean validateCreditCard(String creditCard){
-        // This is temporary
-        return true;
+        if (creditCard.length() != 9) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     /*
     * This method may be edited to achieve the task however you like.
