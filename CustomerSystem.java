@@ -102,42 +102,43 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static boolean validatePostalCode(String postalCode) throws FileNotFoundException{
-    // Reinitialize a scanner since I am asking for an input
-    // Can't close reader, closes all scanners
-    Scanner reader = new Scanner(System.in);
-    // Making sure postal code file is created and in same folder as this program
-    System.out.println("Make sure you have the postal codes file on your system and in same folder as this program in order to verify");
-      // Create the text file and location of where the postal code chart is in 
-      // before the verifying of the postal code, since I can't hardcode it, and 
-      //  this is my computer so you won't have my file
-      System.out.println("Enter file name and location (eg. C:\\Users\\Ryan Mah\\Desktop\\SAM\\customer-system\\postalC)");
-      String fileNameLocation = reader.nextLine(); // where user inputs file name and location
-      // Create a file instance to reference the text file in java
-      File textFile = new File(fileNameLocation + ".txt");
+        // Reinitialize a scanner since I am asking for an input
+        // Can't close reader, closes all scanners
+        Scanner reader = new Scanner(System.in);
+        // Making sure postal code file is created and in same folder as this program
+        System.out.println("Make sure you have the postal codes file on your system and in same folder as this program in order to verify");
+        // Create the text file and location of where the postal code chart is in 
+        // before the verifying of the postal code, since I can't hardcode it, and 
+        //  this is my computer so you won't have my file
+        System.out.println("Enter file name and location (eg. C:\\Users\\Ryan Mah\\Desktop\\SAM\\customer-system\\postalC)");
+        String fileNameLocation = reader.nextLine(); // where user inputs file name and location
+        // Create a file instance to reference the text file in java
+        File textFile = new File(fileNameLocation + ".txt");
 
-      // We create a scanner instance to read the file in java
-      // Scanner reader = new Scanner(System.in)
-      Scanner text = new Scanner(textFile);
+        // We create a scanner instance to read the file in java
+        // Scanner reader = new Scanner(System.in)
+        Scanner text = new Scanner(textFile);
 
-      // For now its false unless otherwise
-      boolean valid=false;
+        // For now its false unless otherwise
+        boolean valid=false;
 
-      // If Postal code is more than 2 characters
-      if(postalCode.length()>=3) {
-        String postal=postalCode.substring(0,3); // Taking the postal codes from charts
-        while(text.hasNextLine()) {
-          String line = text.nextLine();
-          String code = line.substring(0,3);
-          // Checking if it contains the Postal codes 
-          if(code.contains(postal)){ 
-            // Returns True
-            valid= true;
+        // If Postal code is more than 2 characters
+        if(postalCode.length()>=3) {
+          String postal=postalCode.substring(0,3); // Taking the postal codes from charts
+          while(text.hasNextLine()) {
+            String line = text.nextLine();
+            String code = line.substring(0,3);
+            // Checking if it contains the Postal codes 
+            if(code.contains(postal)){ 
+              // Returns True
+              valid= true;
+            }
           }
-
+          // Close text
+          text.close();
         }
-      }
-        return valid; // Returns False
-}
+          return valid; // Returns False
+    }
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
