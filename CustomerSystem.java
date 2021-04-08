@@ -1,3 +1,10 @@
+/**
+ * Date: April 8th, 2021
+ * Names: Marc Fernandes and Ryan Mah
+ * Teacher: Mr. Ho
+ * Description: A system that lets a user enter and verify data.
+ */
+
 // Throughout this project, the use of data structures are not permitted such as methods like .split and .toCharArray
 
 
@@ -10,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.lang.NumberFormatException;
 import java.util.Random;
 
 class CustomerSystem{
@@ -63,6 +71,12 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
+
+    /**
+     * Lets the user enter their info.
+     * 
+     * @return All the data that the user put in.
+     */
     public static String enterCustomerInfo() throws FileNotFoundException{
         // Initialise scanner
         Scanner customerReader = new Scanner(System.in);
@@ -97,7 +111,7 @@ class CustomerSystem{
 
         // Cannot close the scanner since it closes all other scanners
 
-        String allUserData = firstName.concat(", ").concat(lastName).concat(", ").concat(city).concat(", ").concat(postalCode).concat(", ").concat(creditCardNumber); 
+        String allUserData = firstName.concat(",").concat(lastName).concat(",").concat(city).concat(",").concat(postalCode).concat(",").concat(creditCardNumber); 
         return allUserData;
     }
     /*
@@ -106,7 +120,7 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
 
-    /*
+    /**
      * Validate postal code inputted though the method, then determines valid or not, returns it back to enterCustomerInfo() method
      * 
      * @param String postalCode - String of users inputted postal code
@@ -158,6 +172,13 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
+
+    /**
+     * Verifies the credit card entered in using the Luhn Algorithm.
+     * 
+     * @param creditCard - A string that contains the credit card number
+     * @return A boolean statement depending on if the credit card is valid or not. 
+     */
     public static boolean validateCreditCard(String creditCard){
         // Initialise variables
         int sum1 = 0;
@@ -182,7 +203,7 @@ class CustomerSystem{
                 sum1 += Integer.parseInt(creditCardReversed.substring(i,i+1));
             }
             // Return false if the character isn't a number
-            catch (Exception e) {
+            catch (NumberFormatException e) {
                 return false;
             }
         }
@@ -193,7 +214,7 @@ class CustomerSystem{
                 addBy += Integer.parseInt(creditCardReversed.substring(i, i+1));
             }
             // Return false if the character isn't a number
-            catch (Exception e) {
+            catch (NumberFormatException e) {
                 return false;
             }
             // Double the integer
@@ -221,11 +242,11 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
 
-    /*
+    /**
      * Generates  CSV file of Customer Data with a Unique ID
      *  
      * @param String userData - String of data that was collected
-     * @Exception IOEXception (Used twice in catch)
+     * @exception IOException (Used twice in catch)
      * @return the file exists or not
     */
     public static void generateCustomerDataFile(String userData)  {
