@@ -1,4 +1,4 @@
-/**
+/*
  * Date: April 8th, 2021
  * Names: Marc Fernandes and Ryan Mah
  * Teacher: Mr. Ho
@@ -20,7 +20,7 @@ import java.io.FileWriter;
 import java.lang.NumberFormatException;
 import java.util.Random;
 
-class CustomerBackup{
+class CustomerSystem{
     public static void main(String[] args) throws FileNotFoundException{
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
