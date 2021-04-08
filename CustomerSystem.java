@@ -7,8 +7,12 @@ import java.util.Scanner;
 // More packages may be imported in the space below
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.util.Random;
 
-class CustomerSystem{
+class CustomerBackup{
     public static void main(String[] args) throws FileNotFoundException{
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
@@ -104,14 +108,14 @@ class CustomerSystem{
     public static boolean validatePostalCode(String postalCode) throws FileNotFoundException{
         // Reinitialize a scanner since I am asking for an input
         // Can't close reader, closes all scanners
-        Scanner reader = new Scanner(System.in);
+        Scanner files = new Scanner(System.in);
         // Making sure postal code file is created and in same folder as this program
         System.out.println("Make sure you have the postal codes file on your system and in same folder as this program in order to verify");
         // Create the text file and location of where the postal code chart is in 
         // before the verifying of the postal code, since I can't hardcode it, and 
         //  this is my computer so you won't have my file
-        System.out.println("Enter file name and location (eg. C:\\Users\\Ryan Mah\\Desktop\\SAM\\customer-system\\postalC)");
-        String fileNameLocation = reader.nextLine(); // where user inputs file name and location
+        System.out.println("Enter file name and location (eg. C:\\Users\\Ryan Mah\\Desktop\\SAM\\customer-system\\postalCC)");
+        String fileNameLocation = files.nextLine(); // where user inputs file name and location
         // Create a file instance to reference the text file in java
         File textFile = new File(fileNameLocation + ".txt");
 
@@ -133,11 +137,12 @@ class CustomerSystem{
               // Returns True
               valid= true;
             }
+
           }
           // Close text
           text.close();
         }
-          return valid; // Returns False
+         return valid; // Returns False
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -206,7 +211,52 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void generateCustomerDataFile(){
+    public static void generateCustomerDataFile()  {
+        // Reinitialize without closing
+        Scanner data = new Scanner(System.in);
+        // For id numbers
+        Random rand = new Random();
+        // All random per character, making sure Value 1 starts with 1
+        int randNum = rand.nextInt(1)+1;
+        int randNum2 = rand.nextInt(9);
+        int randNum3 = rand.nextInt(9);
+        int randNum4 = rand.nextInt(9);
+        int randNum5 = rand.nextInt(9);
+        int randNum6 = rand.nextInt(9);
+        int randNum7 = rand.nextInt(9);
+        int randNum8 = rand.nextInt(9);
+
+        System.out.println("Enter file name (eg. C:\\Users\\Ryan Mah\\Desktop\\SAM\\customer-system\\generation)");
+        String fileNameLocation = data.nextLine(); // where user inputs file name and location
+        File newFile = new File(fileNameLocation + ".csv");
+        System.out.println(newFile.exists());
+        System.out.println("Your information has been generated");
+
+        try {
+            newFile.createNewFile();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        
+        try{
+            FileWriter fw = new FileWriter(newFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("My first line");
+            bw.newLine();
+            bw.write("My Second Line");
+            bw.newLine();
+            bw.write("Last Line");
+            bw.newLine();
+            // Unique ID
+            bw.write("ID: " + randNum + randNum2 + randNum3 + randNum4 + randNum5 + randNum6 + randNum7 + randNum8);
+            bw.flush();
+            bw.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
