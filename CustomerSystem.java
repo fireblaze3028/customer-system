@@ -23,7 +23,7 @@ class CustomerBackup{
 
         // More variables for the main may be declared in the space below
 
-        String allUserData;
+        String allUserData = "";
 
         do{
             printMenu();                                    // Printing out the main menu
@@ -37,7 +37,7 @@ class CustomerBackup{
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile();
+                generateCustomerDataFile(allUserData);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -104,6 +104,15 @@ class CustomerBackup{
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
+    */
+
+    /*
+     * Validate postal code inputted though the method, then determines valid or not, returns it back to enterCustomerInfo() method
+     * 
+     * @param String postalCode - String of users inputted postal code
+     * @throws FileNotFoundException
+     * @return - True if card is valid
+     * @return - False if card is invalid
     */
     public static boolean validatePostalCode(String postalCode) throws FileNotFoundException{
         // Reinitialize a scanner since I am asking for an input
@@ -211,12 +220,20 @@ class CustomerBackup{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void generateCustomerDataFile()  {
+
+    /*
+     * Generates  CSV file of Customer Data with a Unique ID
+     *  
+     * @param String userData - String of data that was collected
+     * @Exception IOEXception (Used twice in catch)
+     * @return the file exists or not
+    */
+    public static void generateCustomerDataFile(String userData)  {
         // Reinitialize without closing
         Scanner data = new Scanner(System.in);
-        // For id numbers
+        // For ID numbers
         Random rand = new Random();
-        // All random per character, making sure Value 1 starts with 1
+        // All random per character for the ID
         int randNum = rand.nextInt(1)+1;
         int randNum2 = rand.nextInt(9);
         int randNum3 = rand.nextInt(9);
@@ -226,12 +243,16 @@ class CustomerBackup{
         int randNum7 = rand.nextInt(9);
         int randNum8 = rand.nextInt(9);
 
+        // Input File information (Make sure file and this  program are in the same folder)
         System.out.println("Enter file name (eg. C:\\Users\\Ryan Mah\\Desktop\\SAM\\customer-system\\generation)");
         String fileNameLocation = data.nextLine(); // where user inputs file name and location
         File newFile = new File(fileNameLocation + ".csv");
+        // If File exists
         System.out.println(newFile.exists());
+        // Saying it is generated in the CSV file
         System.out.println("Your information has been generated");
-
+        
+        // Creates new file if not already
         try {
             newFile.createNewFile();
         }
@@ -240,20 +261,19 @@ class CustomerBackup{
         }
         
         try{
+            // What's being generated in the file
             FileWriter fw = new FileWriter(newFile);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("My first line");
+            bw.write("Information");
             bw.newLine();
-            bw.write("My Second Line");
-            bw.newLine();
-            bw.write("Last Line");
+            bw.write(userData);
             bw.newLine();
             // Unique ID
-            bw.write("ID: " + randNum + randNum2 + randNum3 + randNum4 + randNum5 + randNum6 + randNum7 + randNum8);
+            bw.write("ID is: " + randNum + randNum2 + randNum3 + randNum4 + randNum5 + randNum6 + randNum7 + randNum8);
             bw.flush();
             bw.close();
         }
-        catch (IOException e){
+        catch (IOException e){ // Catches any Exception
             e.printStackTrace();
         }
 
