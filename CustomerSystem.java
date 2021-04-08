@@ -1,4 +1,4 @@
-/**
+/*
  * Date: April 8th, 2021
  * Names: Marc Fernandes and Ryan Mah
  * Teacher: Mr. Ho
