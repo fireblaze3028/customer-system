@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.util.Random;
 
-class CustomerBackup{
+class CustomerSystem{
     public static void main(String[] args) throws FileNotFoundException{
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
