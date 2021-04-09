@@ -207,7 +207,7 @@ class CustomerSystem{
                 return false;
             }
         }
-        // Double the even numbers and add them together
+        // Add the even numbers and double them
         for (int i = 1; i < creditCardReversed.length(); i += 2) {
             // Try to add the even numbers if they are numbers
             try {
